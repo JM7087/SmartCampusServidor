@@ -3,6 +3,7 @@ João Marcos de Oliveira Santos
 Site: www.jm7087.com
 10/10/2017
 '''
+
 import os
 from flask import Flask, jsonify
 app = Flask(__name__)
@@ -62,6 +63,7 @@ def energia():
             resp = CP
         arq.close()
         return jsonify({'response':resp})
+
 
 if __name__ == '__main__':
     app.run(debug=True,  host='192.168.0.102', port=7087)

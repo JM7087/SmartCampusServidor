@@ -20,9 +20,17 @@ def arquivo():
 
 @app.route('/arcondicionado/ligado=<string:ligado>&tempo=<string:tempo>&auto=<string:auto>', methods=['GET'])
 def arCondicionado(ligado, tempo, auto):
-        arq = open(os.getcwd()+'/arquivos/tempo.txt', 'w')
-        arq.write(ligado+"|"+tempo+"|"+auto)
-        arq.close()
+        arqAcLigado = open(os.getcwd() + '/arquivos/AcOnOff.txt', 'w')
+        arqAcLigado.write(ligado)
+        arqAcLigado.close()
+
+        arqAcTempo = open(os.getcwd()+'/arquivos/AcTempo.txt', 'w')
+        arqAcTempo.write(tempo)
+        arqAcTempo.close()
+
+        arqAcAuto = open(os.getcwd() + '/arquivos/AcAuto.txt', 'w')
+        arqAcAuto.write(auto)
+        arqAcAuto.close()
         return jsonify({'response': 'OK'})
 
 @app.route('/luz/luzOnOff=<string:ligadorDesligarLuz>', methods=['GET'])
@@ -56,4 +64,4 @@ def energia():
         return jsonify({'response':resp})
 
 if __name__ == '__main__':
-    app.run(debug=True,  host='localhost')
+    app.run(debug=True,  host='192.168.0.102', port=7087)
